@@ -1,0 +1,52 @@
+﻿@model IEnumerable<NovelHelper_V2.Models.Character>
+
+<div class="col-md-2">
+    <table class="table table-hover" id="characterList">
+        <tr>
+            <th>
+                Characters
+            </th>
+            <th style="text-align: right">
+                <a href="@Url.Action("CreateCharacter", "Home", new { id = Model.First().NovelId})">
+                    <img width="25" src="~/Content/images/Plus.png" />
+                </a>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td hidden>@item.CharacterId</td>
+                <td>@item.Name</td>
+                <td></td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div id="characterDetailView" class="col-md-8">
+</div>
+
+
+<script>
+    window.onload = addRowHandlers();
+    function addRowHandlers() {
+        var table = document.getElementById("characterList");
+        var rows = table.getElementsByTagName("tr");
+        for (i = 1; i < rows.length; i++) {
+            var row = table.rows[i];
+            row.onclick = function (myrow) {
+                return function () {
+                    var cell = myrow.getElementsByTagName("td")[0];
+                    var id = cell.innerHTML;
+                    getCharacterDetail(id);
+                };
+            }(row);
+        }
+    }
+    function getCharacterDetail(e) {
+        var link = '@Url.Action("CharacterDetail", "Home", new { id = -1 } )';
+        link = link.replace(-1, e);
+        $('#characterDetailView').load(link);
+    }
+</script>

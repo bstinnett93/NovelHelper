@@ -1,0 +1,60 @@
+﻿@model IEnumerable<NovelHelper_V2.Models.Setting>
+
+<div class="col-md-2">
+    <table class="table table-hover" id="settingList">
+        <tr>
+            <th>
+                Settings
+            </th>
+            <th style="text-align: right">
+                <a data-toggle="modal" data-target="addModal" id="addASetting" class="btn">
+                    <img width="25" src="~/Content/images/Plus.png"/>
+                </a>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td hidden>@item.SettingId</td>
+                <td>@item.Name</td>
+                <td>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div id="settingDetailView" class="col-md-8">
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/Scripts/modals.js"></script>
+<script>
+    $(function () {
+        $("#addASetting").on("click",
+            function () {
+                addSetting('@Url.Action("CreateSetting", "Home", new { id = Model.First().NovelId })');
+            });
+    });
+    window.onload = addRowHandlers();
+    function addRowHandlers() {
+        var table = document.getElementById("settingList");
+        var rows = table.getElementsByTagName("tr");
+        for (i = 1; i < rows.length; i++) {
+            var row = table.rows[i];
+            row.onclick = function (myrow) {
+                return function () {
+                    var cell = myrow.getElementsByTagName("td")[0];
+                    var id = cell.innerHTML;
+                    getSettingDetail(id);
+                };
+            }(row);
+        }
+    }
+    function getSettingDetail(e) {
+        var link = '@Url.Action("SettingDetail", "Home", new { id = -1 } )';
+        link = link.replace(-1, e);
+        $('#settingDetailView').load(link);
+    }
+</script>

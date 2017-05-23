@@ -1,0 +1,71 @@
+﻿@using NovelHelper_V2.Models
+@model IEnumerable<NovelHelper_V2.Models.Novel>
+
+@{
+    ViewBag.Title = "My Novels";
+}
+
+<body>
+    <div class="col-md-2">
+
+        <a data-toggle="modal" data-target="addModal" class="btn" id="addANovel">Create Novel</a>
+
+        <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                @{
+                    var i = 0;
+                }
+                @foreach (var novel in Model)
+                {
+                    <div class="panel-heading" role="tab" id="@($"heading{i}")">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion1" href="@($"#collapse{i}")" aria-expanded="true" aria-controls="@($"collapse{i}")">
+                                @novel.Title
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="@($"collapse{i}")" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="@($"heading{i}")">
+                        <div class="list-group">
+                            <div class="list-group-item" onclick="getCharacters(@novel.NovelId)">Characters</div>
+                            <div class="list-group-item" onclick="getSettings(@novel.NovelId)">Settings</div>
+                        </div>
+                    </div>
+                    i++;
+                }
+            </div>
+        </div>
+    </div>
+    
+<div id="addNovelModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" id="addNovelModalBody">
+        </div>
+    </div>
+</div>
+
+
+<div id="subView">
+    </div>
+
+</body>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/Scripts/modals.js"></script>
+<script>
+    $(function() {
+        $("#addANovel").on("click",
+            function() {
+                addNovel('@Url.Action("CreateNovel", "Home")');
+            });
+    });
+    function getSettings(e) {
+        var link = '@Url.Action("Settings", "Home", new { id = -1 } )';
+        link = link.replace(-1, e);
+        $('#subView').load(link);
+    }
+    function getCharacters(e) {
+        var link = '@Url.Action("Characters", "Home", new { id = -1 } )';
+        link = link.replace(-1, e);
+        $('#subView').load(link);
+    }
+</script>

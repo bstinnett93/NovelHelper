@@ -1,0 +1,21 @@
+﻿@model NovelHelper_V2.Models.Setting
+
+<table width="100%">
+    <tr style="width: 100%">
+        <td style="text-align: left">
+            <a href="@Url.Action("DeleteSetting", "Home", new { id = Model.SettingId})">
+                <img width="25" src="~/Content/images/Delete.png" />
+            </a>
+        </td>
+        <td style="text-align: right">
+            <a href="@Url.Action("EditSetting", "Home", new { id = Model.SettingId})">
+                <img width="25" src="~/Content/images/Edit.png" />
+            </a>
+        </td>
+    </tr>
+</table>
+
+<div style="text-align: center">
+    <h1>@Model.Name</h1>
+    @Model.Description
+</div>

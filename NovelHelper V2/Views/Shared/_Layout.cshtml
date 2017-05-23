@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            NovelHelper
+        </div>
+    </div>
+</div>
+
+<div style="margin: 10px">
+    <div>
+        @RenderBody()
+    </div>
+    <footer>
+        @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+    </footer>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>
+
+<style>
+    button {
+        margin-right: 5px;
+    }
+    button#new {
+        width: 20px;
+        height: 20px;
+        background-image: url(~/Content/images/plus.png);
+    }
+    button#update {
+        background: url(~/Content/images/edit.png) no-repeat;
+    }
+    button#delete {
+        background: url(~/Content/images/delete.png) no-repeat;
+    }
+</style>
