@@ -10,17 +10,17 @@ using NovelHelper_V2.Models;
 
 namespace NovelHelper_V2.Controllers
 {
-    public class NovelsController : Controller
+    public class NovelController : Controller
     {
         private NovelDbContext db = new NovelDbContext();
 
-        // GET: Novels
+        // GET: Novel
         public ActionResult Index()
         {
-            return View(db.Novels.ToList());
+            return PartialView(db.Novels.ToList());
         }
 
-        // GET: Novels/Details/5
+        // GET: Novel/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -32,33 +32,34 @@ namespace NovelHelper_V2.Controllers
             {
                 return HttpNotFound();
             }
-            return View(novel);
+            return PartialView(novel);
         }
 
-        // GET: Novels/Create
+        // GET: Novel/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
-        // POST: Novels/Create
+        // POST: Novel/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NovelId,Title,Synopsis")] Novel novel)
+        public ActionResult Create(Novel novel)
         {
             if (ModelState.IsValid)
             {
+                novel.DateAccessed = DateTime.Now;
                 db.Novels.Add(novel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(novel);
+            return PartialView(novel);
         }
 
-        // GET: Novels/Edit/5
+        // GET: Novel/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -70,15 +71,15 @@ namespace NovelHelper_V2.Controllers
             {
                 return HttpNotFound();
             }
-            return View(novel);
+            return PartialView(novel);
         }
 
-        // POST: Novels/Edit/5
+        // POST: Novel/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NovelId,Title,Synopsis")] Novel novel)
+        public ActionResult Edit([Bind(Include = "NovelId,Title,Synopsis,DateAccessed")] Novel novel)
         {
             if (ModelState.IsValid)
             {
@@ -86,10 +87,10 @@ namespace NovelHelper_V2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(novel);
+            return PartialView(novel);
         }
 
-        // GET: Novels/Delete/5
+        // GET: Novel/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -101,10 +102,10 @@ namespace NovelHelper_V2.Controllers
             {
                 return HttpNotFound();
             }
-            return View(novel);
+            return PartialView(novel);
         }
 
-        // POST: Novels/Delete/5
+        // POST: Novel/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
