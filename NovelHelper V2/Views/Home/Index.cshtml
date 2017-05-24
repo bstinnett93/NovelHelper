@@ -6,20 +6,16 @@
 }
 
 <body>
-    <div id="novelView"></div>
-    <div id="subView"></div>
+    <div id="novelView" class="col-md-2"></div>
+    <div id="subView" class="col-md-12"></div>
 </body>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/global.js"></script>
 <script>
     $(function() {
         $('#novelView').load('@Url.Action("Index", "Novel")');
     });
-
-    $("#addANovel").on("click", function () {
-        $('#addModalBody').load('@Url.Action("Create", "Novel")');
-    });
-
     function getSettings(e) {
         var link = '@Url.Action("Index", "Setting", new { id = -1 } )';
         link = link.replace(-1, e);
@@ -30,31 +26,9 @@
         link = link.replace(-1, e);
         $('#subView').load(link);
     }
-    function addNovel() {
-        $('#addModalBody').html('');
-        $.ajax({
-            url: '@Url.Action("Create", "Novel")',
-            type: 'GET',
-            success: function (data) {
-                $('#addModalBody').html(partialView);
-            },
-            error: function () {
-                alert('error!');
-            }
-        });
+    function getNovelDetails(e) {
+        var link = '@Url.Action("Details", "Novel", new { id = -1 } )';
+        link = link.replace(-1, e);
+        $('#subView').load(link);
     }
-    //function addSetting(e) {
-    //    $('#addModalBody').html('');
-    //    $.ajax({
-    //        url: e,
-    //        type: 'GET',
-    //        success: function (partialView) {
-    //            $('#addModalBody').html('');
-    //            $('#addModalBody').html(partialView);
-    //        },
-    //        error: function () {
-    //            alert('error!');
-    //        }
-    //    });
-    //}
 </script>

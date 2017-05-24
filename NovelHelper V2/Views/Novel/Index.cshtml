@@ -1,30 +1,30 @@
 ﻿@model IEnumerable<NovelHelper_V2.Models.Novel>
 
-<div class="col-md-2">
-    <a data-toggle="modal" data-target="addModal" class="btn" id="addANovel">Create Novel</a>
+<button id="createNovel" data-request-url="@Url.Action("Create","Novel")">Create Novel</button>
 
-    <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            @{
-                var i = 0;
-            }
-            @foreach (var novel in Model)
-            {
-                <div class="panel-heading" role="tab" id="@($"heading{i}")">
-                    <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion1" href="@($"#collapse{i}")" aria-expanded="true" aria-controls="@($"collapse{i}")">
-                            @novel.Title
-                        </a>
-                    </h4>
+<div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+        @{
+            var i = 0;
+        }
+        @foreach (var novel in Model)
+        {
+            <div class="panel-heading" role="tab" id="@($"heading{i}")">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion1" href="@($"#collapse{i}")" aria-expanded="true" aria-controls="@($"collapse{i}")" onclick="getNovelDetails(@novel.NovelId)">
+                        @novel.Title
+                    </a>
+                </h4>
+            </div>
+            <div id="@($"collapse{i}")" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="@($"heading{i}")">
+                <div class="list-group">
+                    <div class="list-group-item" onclick="getCharacters(@novel.NovelId)">Characters</div>
+                    <div class="list-group-item" onclick="getSettings(@novel.NovelId)">Settings</div>
                 </div>
-                <div id="@($"collapse{i}")" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="@($"heading{i}")">
-                    <div class="list-group">
-                        <div class="list-group-item" onclick="getCharacters(@novel.NovelId)">Characters</div>
-                        <div class="list-group-item" onclick="getSettings(@novel.NovelId)">Settings</div>
-                    </div>
-                </div>
-                i++;
-            }
-        </div>
+            </div>
+            i++;
+        }
     </div>
 </div>
+
+<script type="text/javascript" src="~/Scripts/global.js"></script>

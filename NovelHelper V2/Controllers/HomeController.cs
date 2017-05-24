@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NovelHelper_V2.Models;
-using NovelHelper_V2.Services;
 
 namespace NovelHelper_V2.Controllers
 {

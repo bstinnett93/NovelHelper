@@ -72,7 +72,7 @@ namespace NovelHelper_V2.Controllers
                 character.Novel = novel;
                 db.Characters.Add(character);
                 db.SaveChanges();
-                return RedirectToAction("Index", new { id = character.NovelId });
+                return RedirectToAction("Index", "Home");
             }
 
             return PartialView(character);
@@ -102,7 +102,7 @@ namespace NovelHelper_V2.Controllers
                 character.Novel = novel;
                 db.Entry(character).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", new { id = character.NovelId });
+                return RedirectToAction("Index", "Home");
             }
             return View(character);
         }
@@ -126,7 +126,7 @@ namespace NovelHelper_V2.Controllers
             Character character = db.Characters.Find(id);
             db.Characters.Remove(character);
             db.SaveChanges();
-            return RedirectToAction("Index", new { id = character.NovelId });
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)

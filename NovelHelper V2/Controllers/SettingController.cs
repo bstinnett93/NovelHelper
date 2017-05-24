@@ -71,7 +71,7 @@ namespace NovelHelper_V2.Controllers
                 setting.Novel = novel;
                 db.Settings.Add(setting);
                 db.SaveChanges();
-                return RedirectToAction("Index", new { id = setting.NovelId });
+                return RedirectToAction("Index", "Home");
             }
             return PartialView(setting);
         }
@@ -100,7 +100,7 @@ namespace NovelHelper_V2.Controllers
                 setting.Novel = novel;
                 db.Entry(setting).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", new { id = setting.NovelId });
+                return RedirectToAction("Index", "Home");
             }
             return PartialView(setting);
         }
@@ -124,7 +124,7 @@ namespace NovelHelper_V2.Controllers
             Setting setting = db.Settings.Find(id);
             db.Settings.Remove(setting);
             db.SaveChanges();
-            return RedirectToAction("Index", new { id = setting.NovelId });
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)

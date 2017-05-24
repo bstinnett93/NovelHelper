@@ -53,7 +53,7 @@ namespace NovelHelper_V2.Controllers
                 novel.DateAccessed = DateTime.Now;
                 db.Novels.Add(novel);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             return PartialView(novel);
@@ -85,7 +85,7 @@ namespace NovelHelper_V2.Controllers
             {
                 db.Entry(novel).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
             return PartialView(novel);
         }
@@ -113,7 +113,7 @@ namespace NovelHelper_V2.Controllers
             Novel novel = db.Novels.Find(id);
             db.Novels.Remove(novel);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)
