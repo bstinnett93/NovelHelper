@@ -7,9 +7,7 @@
                 Settings
             </th>
             <th style="text-align: right">
-                <a data-toggle="modal" data-target="addModal" id="addASetting" class="btn">
-                    <img width="25" src="~/Content/images/Plus.png"/>
-                </a>
+                 <img width="25" onclick="addSetting" src="~/Content/images/Plus.png"/>
             </th>
         </tr>
 
@@ -18,8 +16,7 @@
             <tr>
                 <td hidden>@item.SettingId</td>
                 <td>@item.Name</td>
-                <td>
-                </td>
+                <td></td>
             </tr>
         }
     </table>
@@ -29,14 +26,8 @@
 </div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="/Scripts/modals.js"></script>
+
 <script>
-    $(function () {
-        $("#addASetting").on("click",
-            function () {
-                addSetting('@Url.Action("CreateSetting", "Home", new { id = Model.First().NovelId })');
-            });
-    });
     window.onload = addRowHandlers();
     function addRowHandlers() {
         var table = document.getElementById("settingList");
@@ -53,8 +44,12 @@
         }
     }
     function getSettingDetail(e) {
-        var link = '@Url.Action("SettingDetail", "Home", new { id = -1 } )';
+        var link = '@Url.Action("Details", "Setting", new { id = -1 } )';
         link = link.replace(-1, e);
+        $('#settingDetailView').load(link);
+    }
+    function addSetting() {
+        var link = '@Url.Action("Create", "Setting", new { id = @Model.FirstOrDefault().NovelId })';
         $('#settingDetailView').load(link);
     }
 </script>

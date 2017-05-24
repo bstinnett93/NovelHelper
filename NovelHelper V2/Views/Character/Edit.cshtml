@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Character</h4>
         <hr />
@@ -31,7 +31,7 @@
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+
         <input type="hidden" name="CharacterId" id="CharacterId" value="@Model.CharacterId" />
         <input type="hidden" name="NovelId" id="NovelId" value="@Model.NovelId" />
 

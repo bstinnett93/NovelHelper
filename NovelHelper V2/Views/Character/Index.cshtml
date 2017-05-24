@@ -7,9 +7,7 @@
                 Characters
             </th>
             <th style="text-align: right">
-                <a href="@Url.Action("CreateCharacter", "Home", new { id = Model.First().NovelId})">
-                    <img width="25" src="~/Content/images/Plus.png" />
-                </a>
+                <img width="25" onclick="createCharacter()" src="~/Content/images/Plus.png"/>
             </th>
         </tr>
 
@@ -26,7 +24,6 @@
 
 <div id="characterDetailView" class="col-md-8">
 </div>
-
 
 <script>
     window.onload = addRowHandlers();
@@ -45,8 +42,13 @@
         }
     }
     function getCharacterDetail(e) {
-        var link = '@Url.Action("CharacterDetail", "Home", new { id = -1 } )';
+        var link = '@Url.Action("Details", "Character", new { id = -1 } )';
         link = link.replace(-1, e);
+        $('#characterDetailView').load(link);
+    }
+    function createCharacter() {
+        console.log("clicked");
+        var link = '@Url.Action("Create", "Character", new { id = @Model.FirstOrDefault().NovelId })';
         $('#characterDetailView').load(link);
     }
 </script>

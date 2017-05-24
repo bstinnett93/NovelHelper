@@ -194,7 +194,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\CharacterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NovelController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,14 +217,16 @@
     <Compile Include="Migrations\201705161612210_modelUpdate.Designer.cs">
       <DependentUpon>201705161612210_modelUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705232005172_requiredStuff.cs" />
+    <Compile Include="Migrations\201705232005172_requiredStuff.Designer.cs">
+      <DependentUpon>201705232005172_requiredStuff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AddSetting.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Models\Novel.cs" />
     <Compile Include="Models\NovelDbContext.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\NovelData.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -249,7 +254,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modals.js" />
+    <Content Include="Scripts\global.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -268,20 +273,25 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\CreateNovel.cshtml" />
-    <Content Include="Views\Home\EditSetting.cshtml" />
-    <Content Include="Views\Home\Settings.cshtml" />
-    <Content Include="Views\Home\Characters.cshtml" />
-    <Content Include="Views\Home\CreateSetting.cshtml" />
-    <Content Include="Views\Home\CreateCharacter.cshtml" />
-    <Content Include="Views\Home\SettingDetail.cshtml" />
-    <Content Include="Views\Home\CharacterDetail.cshtml" />
-    <Content Include="Views\Home\EditCharacter.cshtml" />
-    <Content Include="Views\Home\DeleteSetting.cshtml" />
-    <Content Include="Views\Home\DeleteCharacter.cshtml" />
+    <Content Include="Views\Novel\Create.cshtml" />
+    <Content Include="Views\Novel\Delete.cshtml" />
+    <Content Include="Views\Novel\Details.cshtml" />
+    <Content Include="Views\Novel\Edit.cshtml" />
+    <Content Include="Views\Novel\Index.cshtml" />
+    <Content Include="Views\Setting\Create.cshtml" />
+    <Content Include="Views\Setting\Delete.cshtml" />
+    <Content Include="Views\Setting\Details.cshtml" />
+    <Content Include="Views\Setting\Edit.cshtml" />
+    <Content Include="Views\Setting\Index.cshtml" />
+    <Content Include="Views\Character\Create.cshtml" />
+    <Content Include="Views\Character\Delete.cshtml" />
+    <Content Include="Views\Character\Details.cshtml" />
+    <Content Include="Views\Character\Edit.cshtml" />
+    <Content Include="Views\Character\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -303,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705161612210_modelUpdate.resx">
       <DependentUpon>201705161612210_modelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705232005172_requiredStuff.resx">
+      <DependentUpon>201705232005172_requiredStuff.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

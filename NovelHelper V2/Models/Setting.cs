@@ -12,6 +12,7 @@ namespace NovelHelper_V2.Models
     {
         [Key]
         public int SettingId { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
 
